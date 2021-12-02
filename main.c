@@ -1,9 +1,3 @@
-//Headers to include from last step
-#include <sys/wait.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
 
 //Section : Basic lifetime of a shell
 int main (int argc, char **argv)
