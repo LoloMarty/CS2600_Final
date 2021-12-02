@@ -1,3 +1,4 @@
+//Section : Basic lifetime of a shell
 int main (int argc, char **argv)
 {
 	//run command loop
@@ -7,6 +8,8 @@ int main (int argc, char **argv)
 	return EXIT_SUCCESS;
 }
 
+
+//Section : Basic loop of a shell
 void lsh_loop(void)
 {
 	char *line;
@@ -23,3 +26,4 @@ void lsh_loop(void)
 		free(args);
 	} while (status);
 }
+
