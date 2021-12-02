@@ -187,7 +187,7 @@ int lsh_cd(char **args)
 {
 	if (args[1] == NULL)
 	{
-		fprintf(stderr, "lsh: expected arguement to be \"cd\"\n");
+		fprintf(stderr, "lsh: expected arguement to \"cd\"\n");
 	}else{
 		if (chdir(args[1]) != 0
 		{
