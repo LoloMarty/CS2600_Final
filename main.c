@@ -220,7 +220,7 @@ int lsh_exit(char **args)
 
 //Section : Putting together builtins and processes
 
-int lsh_execute(har **args)
+int lsh_execute(char **args)
 {
 	int i;
 
