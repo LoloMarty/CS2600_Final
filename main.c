@@ -1,3 +1,8 @@
+#include <sys/wait.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 
 //Section : Basic lifetime of a shell
 int main (int argc, char **argv)
@@ -65,24 +70,6 @@ char *lsh_read_line(void)
 			}
 		}
 	}
-}
-
-char *lsh_read_line(void)
-{
-	char *line = NULL;
-	ssize_t bufsize = 0; // have getline allocate a buffer for us 
-
-	if (getline(&line, &bufsize, stdin) == -1)
-	{
-		if (feof(stdin)) {
-			exit(EXIT_SUCCESS);
-		}else{
-			perror("readline");
-			exit(EXIT_FAILURE);
-		}
-	}
-
-	return line;
 }
 
 //Section : Parsing the lines
