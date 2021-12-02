@@ -1,3 +1,4 @@
+
 //Section : Basic lifetime of a shell
 int main (int argc, char **argv)
 {
@@ -119,4 +120,32 @@ char **lsh_split_line(char *line)
 	}
 	tokens[position] = NULL;
 	return tokens; 
+}
+
+//Section : How shells start processes
+int lsh_launch(char **args)
+{
+	pid_t pid, wpid;
+	int status;
+
+	pid = fork();
+	if (pid == 0)
+	{
+		//child process
+		if (execvp(args[0], args) == -1)
+		{
+			perror("lsh");
+		}
+		exit(EXIT_FAILURE);
+	} else if (pid < 0) {
+		//error forking 
+		perror("lsh");
+	}else{
+		//parent process
+		do {
+			wpid = waitpid(pid, &status, WUNTRACED);
+		} while (!WIFEXITED(status) && !WIFSIGNALED(status));
+	}
+
+	return 1;
 }
