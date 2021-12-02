@@ -218,5 +218,25 @@ int lsh_exit(char **args)
 	return 0;
 }
 
+//Section : Putting together builtins and processes
 
+int lsh_execute(har **args)
+{
+	int i;
 
+	if (args[0] == NULL)
+	{
+		//An empty command was entered
+		return 1;
+	}
+
+	for (i = 0; i<lsh_num_builtins(); i++)
+	{
+		if (strcmp(args[0], builtin_str[i]) == 0)
+		{
+			return (*builtin_func[i])(args);
+		}
+	}
+
+	return lsh_launch(args);
+}
